@@ -1,36 +1,42 @@
 res_w = float(input("Width (px): "))
 res_h = float(input("Height (px): "))
 fps = float(input("FPS (Frames per second): "))
-byte_per_pic = float(input("Bytes pro Pixel (z. B. 3 für RGB): "))
+byte_per_pic = float(input("Bytes pro Pixel (z.B. 3 für RGB): "))
 length = float(input("Filmlänge in Minuten: "))
 
-# Berechnung Pixel pro Bild
+# Schritt 1: Auflösung
 full = res_w * res_h
-print(f"\nSchritt 1: Auflösung = {res_w} x {res_h} = {full} Pixel pro Bild")
+print("")
+print("Schritt 1: Auflösung = " + str(res_w) + " x " + str(res_h) + " = " + str(full) + " Pixel pro Bild")
 
-# Berechnung Speicher pro Bild
+# Schritt 2: Speicher pro Bild
 size = full * byte_per_pic
-print(f"Schritt 2: Speicher pro Bild = {full} * {byte_per_pic} = {size} Bytes")
+print("Schritt 2: Speicher pro Bild = " + str(full) + " * " + str(byte_per_pic) + " = " + str(size) + " Bytes")
 
-def print_size(nr: float):
+# Hilfsfunktion zur Ausgabe in verschiedenen Einheiten
+def print_size(nr):
     print("~ Speichergrößen:")
-    print("  Bytes:", nr)
-    print("  KB   :", nr / 1_000)
-    print("  MB   :", nr / 1_000_000)
-    print("  GB   :", nr / 1_000_000_000)
-    print("  TB   :", nr / 1_000_000_000_000)
+    print("  Bytes: " + str(nr))
+    print("  KB   : " + str(nr / 1000))
+    print("  MB   : " + str(nr / 1000000))
+    print("  GB   : " + str(nr / 1000000000))
+    print("  TB   : " + str(nr / 1000000000000))
 
-print("\nBildgröße:")
+# Ausgabe der Bildgröße
+print("")
+print("Bildgröße:")
 print_size(size)
 
-# Berechnung Filmgröße
+# Schritt 3: Anzahl Bilder
 frame_count = fps * 60 * length
-print(f"\nSchritt 3: Gesamtanzahl Bilder = {fps} FPS * 60 Sek * {length} Min = {frame_count} Bilder")
+print("")
+print("Schritt 3: Gesamtanzahl Bilder = " + str(fps) + " * 60 Sek * " + str(length) + " Min = " + str(frame_count) + " Bilder")
 
+# Schritt 4: Gesamtspeicher
 size_full = size * frame_count
-print(f"Schritt 4: Gesamtspeicher = {size} Bytes/Bild * {frame_count} Bilder = {size_full} Bytes")
+print("Schritt 4: Gesamtspeicher = " + str(size) + " * " + str(frame_count) + " = " + str(size_full) + " Bytes")
 
-print("\nFilmgröße:")
+# Ausgabe der Filmgröße
+print("")
+print("Filmgröße:")
 print_size(size_full)
-
-# Berechnung Datenr
