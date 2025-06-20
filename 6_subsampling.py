@@ -1,10 +1,19 @@
-# Subsampling-Rechnung (vereinfachte Speicherreduktion)
-# Verhältnis-Tabelle:
+# Speicherersparnis durch Chroma Subsampling
+# Faktor:
 # 4:4:4 = 1.0, 4:2:2 = 0.67, 4:2:0 = 0.5
 
-def subsampling_ratio(original_size_mb, mode):
-    factor = {'4:4:4': 1.0, '4:2:2': 0.67, '4:2:0': 0.5}
-    return round(original_size_mb * factor[mode], 2)
+original = float(input("Originalgroesse (MB): "))
+modus = input("Modus (4:4:4 / 4:2:2 / 4:2:0): ")
 
-# Beispiel
-print(subsampling_ratio(6, '4:2:0'))  # ergibt 3.0 MB
+if modus == "4:4:4":
+    faktor = 1.0
+elif modus == "4:2:2":
+    faktor = 0.67
+elif modus == "4:2:0":
+    faktor = 0.5
+else:
+    print("Ungueltiger Modus")
+    faktor = 1.0
+
+neu = original * faktor
+print("Rechnung: {:.2f} * {:.2f} = {:.2f} MB".format(original, faktor, neu))

@@ -1,9 +1,13 @@
 # RGB zu HEX Umrechnung
-# Eingabe: R, G, B (0–255)
+# Jeder Wert 0–255 wird in 2-stellige Hex-Zahl umgewandelt
 
-r = int(input("R: "))
-g = int(input("G: "))
-b = int(input("B: "))
+r = int(input("R (0–255): "))
+g = int(input("G (0–255): "))
+b = int(input("B (0–255): "))
 
+# Rechnung anzeigen
+print("Rechnung: R={:02X}, G={:02X}, B={:02X}".format(r, g, b))
+
+# Ergebnis
 hexcode = '#{:02X}{:02X}{:02X}'.format(r, g, b)
-print("HEX:", hexcode)
+print("HEX-Farbcode:", hexcode)

@@ -1,9 +1,14 @@
-# Speicherbedarf Video (unkomprimiert)
-# Formel: Breite * Höhe * Farbtiefe (bpp) * fps * Dauer / (8 * 1024 * 1024)
-# 8 für Bits zu Byte, 1024^2 für Byte zu MB
+# Video-Speicherplatz (unkomprimiert)
+# Formel: W * H * bpp * fps * Dauer / 8 / 1024^2
 
-def video_size(width, height, bpp, fps, duration):
-    return round(width * height * bpp * fps * duration / (8 * 1024 * 1024), 2)
+w = int(input("Breite in Pixel: "))
+h = int(input("Höhe in Pixel: "))
+bpp = int(input("Bits pro Pixel (z. B. 24): "))
+fps = int(input("FPS (z. B. 30): "))
+dauer = int(input("Dauer in Sekunden: "))
 
-# Beispiel: 1920x1080, 24 bit, 30 fps, 60 Sek.
-print(video_size(1920, 1080, 24, 30, 60))
+bytes_total = w * h * bpp * fps * dauer / 8
+mb = bytes_total / (1024 * 1024)
+
+print("Rechnung: {}*{}*{}*{}*{} /8 = {:.0f} Bytes".format(w, h, bpp, fps, dauer, bytes_total))
+print("In MB:", round(mb, 2))

@@ -1,8 +1,9 @@
-# PPI Berechnung (pixels per inch)
-# Formel: Pixel / Zoll
+# PPI = Pixel pro Zoll
+# Formel: PPI = Pixel / Zoll
 
-def calc_ppi(pixels, inches):
-    return round(pixels / inches, 2)
+pixel = int(input("Pixelanzahl: "))
+inch = float(input("Zoll (in Inch): "))
 
-# Beispiel
-print(calc_ppi(3000, 10))  # ergibt 300.0
+ppi = pixel / inch
+print("Rechnung: {} / {} = {:.2f} PPI".format(pixel, inch, ppi))
+ # ergibt 300.0

@@ -1,26 +1,28 @@
-# Chroma Subsampling Rechner für TI-84 (z. B. 4:2:0)
-# Rechnet den ungefähren Speicherbedarf eines Bildes mit YCbCr-Sampling
-# Farbtiefe: 8 Bit (1 Byte) pro Kanal
+# Speicherberechnung bei YCbCr mit Subsampling
+# Formel:
+# Y = W * H
+# Cb/Cr = je nach Modus
 
-def chroma_subsampling_bytes(width, height, mode='4:2:0'):
-    y = width * height  # Luminanz (Y) bleibt immer gleich
+w = int(input("Breite in Pixel: "))
+h = int(input("Höhe in Pixel: "))
+modus = input("Modus (4:4:4 / 4:2:2 / 4:2:0): ")
 
-    if mode == '4:4:4':
-        cb = cr = y  # Keine Reduktion
-    elif mode == '4:2:2':
-        cb = cr = (width // 2) * height  # Horizontal halbiert
-    elif mode == '4:2:0':
-        cb = cr = (width // 2) * (height // 2)  # Horizontal + vertikal halbiert
-    else:
-        return "Ungültiges Format"
+y = w * h
 
-    total_bytes = y + cb + cr
-    total_mb = round(total_bytes / (1024 * 1024), 2)
+if modus == "4:4:4":
+    cb = cr = y
+elif modus == "4:2:2":
+    cb = cr = (w // 2) * h
+elif modus == "4:2:0":
+    cb = cr = (w // 2) * (h // 2)
+else:
+    print("Ungueltiger Modus")
+    cb = cr = 0
 
-    print("Y (Luminanz):", y, "Bytes")
-    print("Cb / Cr:", cb, "Bytes je")
-    print("Gesamt:", total_bytes, "Bytes =", total_mb, "MB")
-    return total_mb
+gesamt = y + cb + cr
+mb = gesamt / (1024 * 1024)
 
-# Beispiel: Full HD mit 4:2:0
-chroma_subsampling_bytes(1920, 1080, '4:2:0')
+print("Y:", y, "Bytes")
+print("Cb / Cr:", cb, "Bytes je")
+print("Rechnung: {} + {} + {} = {} Bytes".format(y, cb, cr, gesamt))
+print("In MB:", round(mb, 2))

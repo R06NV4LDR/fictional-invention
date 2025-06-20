@@ -1,9 +1,12 @@
-# Speicherplatz unkomprimiertes RGB-Bild
-# Formel: Breite * Höhe * 3 Bytes (1 Byte pro Farbe)
-# Ergebnis in MB
+# Unkomprimiertes RGB-Bild
+# Formel: Breite * Höhe * 3 Bytes
 
-def image_size(width, height):
-    return round(width * height * 3 / (1024 * 1024), 2)
+w = int(input("Breite in Pixel: "))
+h = int(input("Höhe in Pixel: "))
+b = int(input("Bytes pro Pixel (z.B. 3 bei RGB): "))
 
-# Beispiel
-print(image_size(1920, 1080))  # ca. 5.93 MB
+bytes_total = w * h * b
+mb = bytes_total / (1024 * 1024)
+
+print("Rechnung: {} * {} * {} = {} Bytes".format(w, h, b, bytes_total))
+print("In MB:", round(mb, 2))
